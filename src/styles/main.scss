@@ -1,3 +1,50 @@
-body {
-  margin: 0;
+@import "reset";
+
+$calendarItemWidth: 100px;
+$calendarItemGap: 1px;
+
+html {
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+}
+
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: $calendarItemWidth * 7 + $calendarItemGap * 6;
+  justify-content: space-between;
+  margin: 0 auto;
+
+  & div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1px;
+    background-color: #eee;
+    border: 1px solid;
+    box-sizing: border-box;
+    transition-duration: 0.5s;
+  }
+
+  & :first-child {
+    margin-left: $calendarItemWidth * 6 + $calendarItemGap * 6;
+  }
+
+  & :last-child {
+    margin-right: $calendarItemWidth * 5 + $calendarItemGap * 5;
+  }
+
+  & div:hover {
+    cursor: pointer;
+    background-color: pink;
+    transform: translate(0, -20px);
+  }
+}
+
+@for $i from 1 through 31 {
+  .calendar :nth-child(#{$i})::after {
+    content: "#{$i}";
+  }
 }
