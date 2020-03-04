@@ -1,7 +1,7 @@
 # Calendar
 1. **Fork** the repo.
 2. **Clone** the forked one. (The project link should have your name but not `mate-academy`)
-3. Run `npm install` (or  just `npm i`)
+3. Run `npm install`(or  just `npm i`)
 4. Run `npm start`.
 5. Open one more terminal window for the next steps
 6. `git checkout -b develop` - to create new branch and switch on it
