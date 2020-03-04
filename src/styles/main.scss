@@ -11,29 +11,17 @@ html {
 .calendar {
   display: flex;
   flex-wrap: wrap;
-  max-width: $calendarItemWidth * 7 + $calendarItemGap * 6;
-  justify-content: space-between;
+  max-width: $calendarItemWidth * 7 + $calendarItemGap * 7;
   margin: 0 auto;
 
   & div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 100px;
-    margin-bottom: 1px;
+    display: none;
+    width: $calendarItemWidth;
+    margin: 0 1px 1px 0;
     background-color: #eee;
     border: 1px solid;
     box-sizing: border-box;
     transition-duration: 0.5s;
-  }
-
-  & :first-child {
-    margin-left: $calendarItemWidth * 6 + $calendarItemGap * 6;
-  }
-
-  & :last-child {
-    margin-right: $calendarItemWidth * 5 + $calendarItemGap * 5;
   }
 
   & div:hover {
@@ -44,7 +32,27 @@ html {
 }
 
 @for $i from 1 through 31 {
-  .calendar :nth-child(#{$i})::after {
+  .calendar div:nth-child(#{$i})::after {
     content: "#{$i}";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+  }
+}
+
+$mon: 28, 29, 30, 31;
+@each $day in $mon {
+  @for $i from 1 through $day {
+    .calendar-#{$day} div:nth-child(#{$i}) {
+      display: block;
+    }
+  }
+}
+
+$week: (mon: 0, tue: 1, wed: 2, thu: 3, fri: 4, sat: 5, sun: 6);
+@each $day, $n in $week {
+  .calendar-#{$day} div:first-child {
+    margin-left: $calendarItemWidth * $n + $calendarItemGap * $n;
   }
 }
